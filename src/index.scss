@@ -39,6 +39,7 @@ $color-blue: #72acff;
 
 * {
   box-sizing: border-box;
+  //   border: 1px solid hotpink;
 }
 
 html {
@@ -47,24 +48,16 @@ html {
 
 body {
   @include reset-spacing();
-  @include flex(column);
   font-family: 'Raleway', sans-serif;
   font-weight: $fweight-light;
   color: $color-black;
-}
-
-@media only screen and (min-width: 641px) {
-  .container {
-    width: 80%;
-    place-self: center;
-    margin: 0 auto;
-  }
 }
 
 h1,
 h2,
 h3,
 h4 {
+  @include reset-spacing();
   font-weight: $fweight-bold;
 }
 
@@ -74,17 +67,6 @@ h1 {
 
 img {
   max-width: 100%;
-}
-
-ul,
-li {
-  @include reset-spacing;
-}
-
-li,
-a {
-  list-style: none;
-  text-decoration: none;
 }
 
 /* **               ** */

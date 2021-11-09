@@ -12,31 +12,17 @@ html {
 body {
   margin: 0;
   padding: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   font-family: "Raleway", sans-serif;
   font-weight: 200;
   color: #202124;
 }
 
-@media only screen and (min-width: 641px) {
-  .container {
-    width: 80%;
-    -ms-grid-row-align: center;
-    -ms-grid-column-align: center;
-    place-self: center;
-    margin: 0 auto;
-  }
-}
 h1,
 h2,
 h3,
 h4 {
+  margin: 0;
+  padding: 0;
   font-weight: 600;
 }
 
@@ -46,18 +32,6 @@ h1 {
 
 img {
   max-width: 100%;
-}
-
-ul,
-li {
-  margin: 0;
-  padding: 0;
-}
-
-li,
-a {
-  list-style: none;
-  text-decoration: none;
 }
 
 /* **               ** */
@@ -75,3 +49,7 @@ a {
 }
 /* Large screens - use when QAing large screen-only issues */
 /* XLarge screens - use when QAing xlarge screen-only issues */
+header {
+  background: #a6adb4;
+  color: #ffffff;
+}
