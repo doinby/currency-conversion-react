@@ -42,12 +42,17 @@ $color-blue: #72acff;
   //   border: 1px solid hotpink;
 }
 
+html,
+body {
+  @include reset-spacing();
+  height: 100%;
+}
+
 html {
   font-size: 14px;
 }
 
 body {
-  @include reset-spacing();
   font-family: 'Raleway', sans-serif;
   font-weight: $fweight-light;
   color: $color-black;

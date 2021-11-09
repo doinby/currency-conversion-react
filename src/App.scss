@@ -1,6 +1,32 @@
 @import './index.scss';
 
+#root {
+  @include flex(column);
+  height: 100%;
+}
+
+header,
+main,
+footer {
+  padding: $spacing-075 0;
+}
+
 header {
+  text-align: center;
   background: $color-darkgray;
   color: $color-white;
+}
+
+main {
+  flex: 1 0 auto;
+  place-self: center;
+}
+
+footer {
+  flex-shrink: 0;
+  @include flex(row);
+  place-content: center;
+  #github-icon {
+    fill: $color-darkgray;
+  }
 }
