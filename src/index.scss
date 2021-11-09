@@ -1,0 +1,106 @@
+@import url('https://use.typekit.net/cvl4lsu.css');
+@import url('https://css.gg/css');
+
+@mixin reset-spacing {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+}
+
+$spacing-025: 0.25rem;
+$spacing-050: 0.5rem;
+$spacing-075: 0.75rem;
+$spacing-100: 1rem;
+$spacing-150: 1.5rem;
+$spacing-175: 1.75rem;
+$spacing-200: 2rem;
+$spacing-400: 4rem;
+$spacing-600: 6rem;
+$spacing-800: 8rem;
+
+$color-white: #ffffff;
+$color-black: #202124;
+$color-lightgray: #ebeded;
+$color-darkgray: #a6adb4;
+$color-pink: #fa6980;
+$color-red: #ff4d4d;
+$color-yellow: #ffc96c;
+$color-green: #52e5ba;
+$color-blue: #72acff;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  @include reset-spacing();
+  @include flex(column);
+  font-family: museo-sans, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+@media only screen and (min-width: 641px) {
+  .container {
+    width: 80%;
+    place-self: center;
+    margin: 0 auto;
+  }
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul,
+li {
+  @include reset-spacing;
+}
+
+li,
+a {
+  list-style: none;
+  text-decoration: none;
+}
+
+/* **               ** */
+/* ** MEDIA QUERIES ** */
+/* **               ** */
+
+/* Medium screens - TABLET */
+@media only screen and (min-width: 641px) {
+  body {
+    font-size: 16px;
+  }
+
+  /* Large screens - DESKTOP */
+  @media only screen and (min-width: 1025px) {
+  }
+
+  /* XLarge screens */
+  @media only screen and (min-width: 1441px) {
+  }
+
+  /* XXLarge screens */
+  @media only screen and (min-width: 1921px) {
+  }
+}
+
+/* Large screens - use when QAing large screen-only issues */
+@media only screen and (min-width: 1024px) and (max-width: 1440px) {
+}
+
+@media only screen and (min-width: 1441px) and (max-width: 1920px) {
+} /* XLarge screens - use when QAing xlarge screen-only issues */
