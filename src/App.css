@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600&display=swap");
+@import url("https://css.gg/css");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: "Raleway", sans-serif;
+  font-weight: 200;
+  color: #202124;
+}
+
+@media only screen and (min-width: 641px) {
+  .container {
+    width: 80%;
+    -ms-grid-row-align: center;
+    -ms-grid-column-align: center;
+    place-self: center;
+    margin: 0 auto;
+  }
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+li,
+a {
+  list-style: none;
+  text-decoration: none;
+}
+
+/* **               ** */
+/* ** MEDIA QUERIES ** */
+/* **               ** */
+/* Medium screens - TABLET */
+@media only screen and (min-width: 641px) {
+  body {
+    font-size: 16px;
+  }
+
+  /* Large screens - DESKTOP */
+  /* XLarge screens */
+  /* XXLarge screens */
+}
+/* Large screens - use when QAing large screen-only issues */
+/* XLarge screens - use when QAing xlarge screen-only issues */

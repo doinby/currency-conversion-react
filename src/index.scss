@@ -1,4 +1,5 @@
-@import url('https://use.typekit.net/cvl4lsu.css');
+// @import url('https://fonts.googleapis.com/css2?family=Raleway');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600&display=swap');
 @import url('https://css.gg/css');
 
 @mixin reset-spacing {
@@ -10,6 +11,10 @@
   display: flex;
   flex-direction: $direction;
 }
+
+$fweight-light: 200;
+$fweight-reg: 400;
+$fweight-bold: 600;
 
 $spacing-025: 0.25rem;
 $spacing-050: 0.5rem;
@@ -43,9 +48,9 @@ html {
 body {
   @include reset-spacing();
   @include flex(column);
-  font-family: museo-sans, sans-serif;
-  font-weight: 300;
-  font-style: normal;
+  font-family: 'Raleway', sans-serif;
+  font-weight: $fweight-light;
+  color: $color-black;
 }
 
 @media only screen and (min-width: 641px) {
@@ -54,6 +59,13 @@ body {
     place-self: center;
     margin: 0 auto;
   }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: $fweight-bold;
 }
 
 h1 {
@@ -102,5 +114,6 @@ a {
 @media only screen and (min-width: 1024px) and (max-width: 1440px) {
 }
 
+/* XLarge screens - use when QAing xlarge screen-only issues */
 @media only screen and (min-width: 1441px) and (max-width: 1920px) {
-} /* XLarge screens - use when QAing xlarge screen-only issues */
+}
