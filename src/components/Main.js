@@ -4,19 +4,16 @@ import React, {useState, useEffect} from 'react';
 import CurrencyInput from './CurrencyInput';
 
 const baseUrl = 'https://v6.exchangerate-api.com/v6/597474abcfb6e5296c3f3d8a';
+const defaultCurrencyCodes = ['AUD', 'NZD'];
 
 // Pair Conversion Format:
 // https://v6.exchangerate-api.com/v6/YOUR-API-KEY/pair/EUR/GBP
 
 export default function Main() {
   const [currencyOptions, setCurrencyOptions] = useState([]);
-  // const [currencyCodes, setCurrencyCodes] = useState([]);
 
-  const [fromCurrency, setFromCurrency] = useState('AUD');
-  const [toCurrency, setToCurrency] = useState('USD');
-
-  const [fromCurrencyName, setFromName] = useState('');
-  const [toCurrencyName, setToName] = useState('');
+  const [fromCurrency, setFromCurrency] = useState(defaultCurrencyCodes[0]);
+  const [toCurrency, setToCurrency] = useState(defaultCurrencyCodes[1]);
 
   const [fromInput, setFromInput] = useState(0);
   const [toInput, setToInput] = useState(0);
@@ -29,17 +26,26 @@ export default function Main() {
       .then((data) => setRate(data.conversion_rate));
   }
 
+  function getCurrencyName(currencyCode) {
+    // Run thru all currencyOptions arrays to
+    // match 3-character currency code with currency name
+    // which normally would be referred to
+    // example of array: [['AUD', 'Australian Dollar'], etc...]
+    for (let i in currencyOptions) {
+      const code = 0; // code is stored first in the array
+      const name = 1; // name is stored second in the array
+
+      if (currencyOptions[i][code] === currencyCode)
+        return currencyOptions[i][name];
+    }
+  }
+
   useEffect(() => {
     // Get currency data from API
     fetch(`${baseUrl}/codes`)
       .then((response) => response.json())
       .then((data) => {
-        // Get a list of all available currencies for conversion
-        // and convert it into an array
-        // console.log(data.supported_codes);
         setCurrencyOptions(data.supported_codes);
-        // const currencies = Object.keys(
-        // setCurrencyOptions(currencies);
       });
 
     getConversionRate();
@@ -78,7 +84,8 @@ export default function Main() {
       <form className='converter-form'>
         <CurrencyInput
           name='from'
-          selectedCurrency={'AUD'}
+          currencyName={getCurrencyName(fromCurrency)}
+          selectedCurrency={defaultCurrencyCodes[0]}
           currencyOptions={currencyOptions}
           inputValue={fromInput}
           onChangeOption={handleOptionChange}
@@ -86,7 +93,8 @@ export default function Main() {
         />
         <CurrencyInput
           name='to'
-          selectedCurrency={'USD'}
+          currencyName={getCurrencyName(toCurrency)}
+          selectedCurrency={defaultCurrencyCodes[1]}
           currencyOptions={currencyOptions}
           inputValue={toInput}
           onChangeOption={handleOptionChange}

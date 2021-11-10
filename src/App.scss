@@ -19,7 +19,30 @@ header {
 
 main {
   flex: 1 0 auto;
-  place-self: center;
+  width: 100%;
+  padding: $spacing-400;
+
+  form.converter-form {
+    @include flex(column);
+    gap: $spacing-100;
+  }
+
+  div.input-container {
+    display: grid;
+    grid-template-areas:
+      'label label'
+      'input select';
+    grid-template-columns: 4fr 1fr;
+    gap: $spacing-075;
+
+    label {
+      grid-area: label;
+
+      span {
+        font-weight: $fweight-bold;
+      }
+    }
+  }
 }
 
 footer {
