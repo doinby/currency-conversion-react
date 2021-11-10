@@ -3,21 +3,25 @@
 import React, {useState, useEffect} from 'react';
 import CurrencyInput from './CurrencyInput';
 
-const baseUrl = 'https://v6.exchangerate-api.com/v6/9f68f70f705cfe734fe1e1a9';
+const baseUrl = 'https://v6.exchangerate-api.com/v6/597474abcfb6e5296c3f3d8a';
 
 // Pair Conversion Format:
 // https://v6.exchangerate-api.com/v6/YOUR-API-KEY/pair/EUR/GBP
 
 export default function Main() {
   const [currencyOptions, setCurrencyOptions] = useState([]);
+  // const [currencyCodes, setCurrencyCodes] = useState([]);
 
   const [fromCurrency, setFromCurrency] = useState('AUD');
   const [toCurrency, setToCurrency] = useState('USD');
 
+  const [fromCurrencyName, setFromName] = useState('');
+  const [toCurrencyName, setToName] = useState('');
+
   const [fromInput, setFromInput] = useState(0);
   const [toInput, setToInput] = useState(0);
 
-  const [rate, setRate] = useState(null);
+  const [rate, setRate] = useState(0);
 
   function getConversionRate() {
     fetch(`${baseUrl}/pair/${fromCurrency}/${toCurrency}`)
@@ -27,24 +31,24 @@ export default function Main() {
 
   useEffect(() => {
     // Get currency data from API
-    fetch(baseUrl + '/latest/USD')
+    fetch(`${baseUrl}/codes`)
       .then((response) => response.json())
       .then((data) => {
         // Get a list of all available currencies for conversion
-        const currencies = Object.keys(data.conversion_rates);
-
-        setCurrencyOptions(currencies);
+        // and convert it into an array
+        // console.log(data.supported_codes);
+        setCurrencyOptions(data.supported_codes);
+        // const currencies = Object.keys(
+        // setCurrencyOptions(currencies);
       });
 
     getConversionRate();
 
-    // if (fromInput > 0 || toInput > 0) {
-    //   console.log('start converting...');
-    // }
-  }, []);
+    setToInput(fromInput * rate);
+  }, [fromInput]);
 
   function handleOptionChange(event) {
-    const changedCurrency = Number(event.target.value);
+    const changedCurrency = event.target.value;
 
     // Register from/to currency change to from/to state
     const isFrom = event.target.name === 'from-options';
@@ -52,33 +56,20 @@ export default function Main() {
       setFromCurrency(changedCurrency);
     } else setToCurrency(changedCurrency);
 
+    // Fetch new rate for each new currency change
     getConversionRate();
+
+    // Display changed option on <selector>
     return changedCurrency;
   }
 
   function handleInputChange(event) {
-    const changedInput = event.target.value;
+    const changedInput = Number(event.target.value);
 
-    // Register from/to input change to from/to state
+    // Register input change to from/to input state
     const isFrom = event.target.name === 'from-input';
     if (isFrom) {
       setFromInput(changedInput);
-      const conversionResult = document.querySelector('input[name="to-input"]');
-      // console.log(conversionResult.value);
-
-      console.log(rate);
-      // if (rate === null) {
-      //   console.log('Loading...');
-      // } else console.log(rate);
-
-      // const fetchResult = async () => {
-      //   const response = await fetch(
-      //     `${baseUrl}/pair/${fromCurrency}/${toCurrency}`
-      //   );
-      //   const data = await response.json();
-      //   console.log(data.conversion_rates);
-      //   // setRate(data.conversion_rates);
-      // };
     } else setToInput(changedInput);
   }
 
@@ -87,7 +78,7 @@ export default function Main() {
       <form className='converter-form'>
         <CurrencyInput
           name='from'
-          defaultCurrency={fromCurrency}
+          selectedCurrency={'AUD'}
           currencyOptions={currencyOptions}
           inputValue={fromInput}
           onChangeOption={handleOptionChange}
@@ -95,7 +86,7 @@ export default function Main() {
         />
         <CurrencyInput
           name='to'
-          defaultCurrency={toCurrency}
+          selectedCurrency={'USD'}
           currencyOptions={currencyOptions}
           inputValue={toInput}
           onChangeOption={handleOptionChange}

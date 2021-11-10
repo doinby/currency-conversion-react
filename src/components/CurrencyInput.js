@@ -1,18 +1,28 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable array-callback-return */
 import React from 'react';
 
 export default function CurrencyInput({
   name,
-  defaultCurrency,
+  selectedCurrency,
   currencyOptions,
   inputValue,
   onChangeOption,
   onChangeInput,
 }) {
-  const defaultIndex = currencyOptions.indexOf(defaultCurrency);
+  let currencyName = '';
+
+  for (let i in currencyOptions) {
+    if (currencyOptions[i][0] === selectedCurrency)
+      // console.log(currencyOptions[i][1]);
+      currencyName = currencyOptions[i][1];
+  }
 
   return (
     <div className='input-container'>
-      <label>Convert {name}:</label>
+      <label>
+        Convert {name}: <span>{currencyName}</span>
+      </label>
       <br />
       <input
         type='number'
@@ -21,19 +31,17 @@ export default function CurrencyInput({
         value={inputValue}
       />
       <select name={name + '-options'} onChange={onChangeOption}>
-        {/* Render default currency */}
-        <option key={defaultIndex} value={defaultCurrency}>
-          {defaultCurrency}
-        </option>
-        {currencyOptions.map((option, index) => {
+        {/* Render default currency at the top */}
+        <option value={selectedCurrency}>{selectedCurrency}</option>
+        {currencyOptions.map(([code, name], index) => {
           // Render other currency that is NOT default currency
-          if (index !== defaultIndex) {
+          if (code !== selectedCurrency) {
             return (
-              <option key={index} value={option}>
-                {option}
+              <option key={index + '_' + name} value={code}>
+                {code}
               </option>
             );
-          } else return null;
+          }
         })}
       </select>
     </div>
