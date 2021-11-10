@@ -24,7 +24,7 @@ main {
 
   form.converter-form {
     @include flex(column);
-    gap: $spacing-100;
+    gap: $spacing-125;
   }
 
   div.input-container {
@@ -32,16 +32,48 @@ main {
     grid-template-areas:
       'label label'
       'input select';
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 75% 25%;
     gap: $spacing-075;
 
     label {
       grid-area: label;
-
-      span {
-        font-weight: $fweight-bold;
-      }
+      text-transform: capitalize;
     }
+
+    input {
+      font-size: 3rem;
+      padding: $spacing-025 $spacing-100;
+      border: none;
+      border-bottom: 1px solid black;
+    }
+
+    select {
+      font-size: 1.5rem;
+      font-weight: $fweight-bold;
+      background: none;
+      border: none;
+    }
+  }
+
+  button.reverse-btn {
+    place-self: center;
+    @include flex(row);
+    place-items: center;
+    gap: $spacing-050;
+    padding: $spacing-075;
+    background: none;
+    border: none;
+    font-weight: $fweight-bold;
+
+    svg {
+      height: 1.35rem;
+    }
+  }
+
+  /* Medium screens - TABLET */
+  @media only screen and (min-width: 641px) {
+    max-width: 609px;
+    margin: 0 auto;
   }
 }
 

@@ -1,7 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from 'react';
+import Button from './Button';
 import CurrencyInput from './CurrencyInput';
+import {reverseArrow} from './icons';
 
 const baseUrl = 'https://v6.exchangerate-api.com/v6/597474abcfb6e5296c3f3d8a';
 const defaultCurrencyCodes = ['AUD', 'NZD'];
@@ -50,8 +52,9 @@ export default function Main() {
 
     getConversionRate();
 
+    // Display conversion result in 'TO:' input field
     setToInput(fromInput * rate);
-  }, [fromInput]);
+  }, [rate, fromInput, fromCurrency]);
 
   function handleOptionChange(event) {
     const changedCurrency = event.target.value;
@@ -79,22 +82,41 @@ export default function Main() {
     } else setToInput(changedInput);
   }
 
+  function handleOnClick(event) {
+    event.preventDefault();
+
+    // Swap selected currencies
+    let currentFrom = fromCurrency;
+    setFromCurrency(toCurrency);
+    setToCurrency(currentFrom);
+
+    // displayNewResult();
+    // Fetch new rate for each new currency change
+    getConversionRate();
+    setToInput(fromInput * rate);
+  }
+
   return (
     <main>
       <form className='converter-form'>
         <CurrencyInput
           name='from'
           currencyName={getCurrencyName(fromCurrency)}
-          selectedCurrency={defaultCurrencyCodes[0]}
+          selectedCurrency={fromCurrency}
           currencyOptions={currencyOptions}
           inputValue={fromInput}
           onChangeOption={handleOptionChange}
           onChangeInput={handleInputChange}
         />
+        <Button
+          className='reverse-btn'
+          displayName={<>{reverseArrow} Switch</>}
+          onClick={handleOnClick}
+        />
         <CurrencyInput
           name='to'
           currencyName={getCurrencyName(toCurrency)}
-          selectedCurrency={defaultCurrencyCodes[1]}
+          selectedCurrency={toCurrency}
           currencyOptions={currencyOptions}
           inputValue={toInput}
           onChangeOption={handleOptionChange}

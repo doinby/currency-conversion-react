@@ -14,7 +14,8 @@ export default function CurrencyInput({
   return (
     <div className='input-container'>
       <label>
-        {name.toUpperCase()}: <span>{currencyName}</span>
+        {/* {name}: <span>{currencyName}</span> */}
+        {currencyName}
       </label>
       <input
         type='number'
