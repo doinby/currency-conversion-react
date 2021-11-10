@@ -1,5 +1,9 @@
 @import './index.scss';
 
+* {
+  // border: 1px solid hotpink;
+}
+
 #root {
   @include flex(column);
   height: 100%;
@@ -19,39 +23,49 @@ header {
 
 main {
   flex: 1 0 auto;
-  width: 100%;
-  padding: $spacing-400;
+  @include flex(column);
+  place-items: center;
+  place-content: center;
 
   form.converter-form {
     @include flex(column);
+    flex-wrap: wrap;
     gap: $spacing-125;
-  }
+    margin: 0 $spacing-150;
 
-  div.input-container {
-    display: grid;
-    grid-template-areas:
-      'label label'
-      'input select';
-    grid-template-columns: 75% 25%;
-    gap: $spacing-075;
+    div.input-container {
+      display: grid;
+      grid-template-areas:
+        'label label'
+        'input select';
+      grid-template-columns: 55% 28%;
+      justify-content: space-evenly;
 
-    label {
-      grid-area: label;
-      text-transform: capitalize;
-    }
+      label {
+        grid-area: label;
+      }
 
-    input {
-      font-size: 3rem;
-      padding: $spacing-025 $spacing-100;
-      border: none;
-      border-bottom: 1px solid black;
-    }
+      input,
+      select {
+        padding: $spacing-050 0;
+        font-size: 2.25rem;
+        border: none;
+      }
 
-    select {
-      font-size: 1.5rem;
-      font-weight: $fweight-bold;
-      background: none;
-      border: none;
+      input {
+        grid-area: input;
+        border-bottom: 1px solid $color-darkgray;
+      }
+
+      // input.to-input {
+      //   color: $color-darkgray;
+      // }
+
+      select {
+        grid-area: select;
+        text-align: center;
+        font-weight: $fweight-bold;
+      }
     }
   }
 
@@ -81,6 +95,8 @@ footer {
   flex-shrink: 0;
   @include flex(row);
   place-content: center;
+  padding: $spacing-200 0;
+
   #github-icon {
     fill: $color-darkgray;
   }
