@@ -18,7 +18,7 @@ export default function CurrencyInput({
         {currencyName}
       </label>
       <input
-        // type='number'
+        type='number'
         name={name + '-input'}
         className={name + '-input'}
         onChange={onChangeInput}
