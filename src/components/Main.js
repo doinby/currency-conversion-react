@@ -5,7 +5,7 @@ import Button from './Button';
 import CurrencyInput from './CurrencyInput';
 import {reverseArrow} from './icons';
 
-const baseUrl = 'https://v6.exchangerate-api.com/v6/597474abcfb6e5296c3f3d8a';
+const baseUrl = 'https://v6.exchangerate-api.com/v6/9f68f70f705cfe734fe1e1a9';
 const defaultCurrencyCodes = ['AUD', 'NZD'];
 
 // Pair Conversion Format:
