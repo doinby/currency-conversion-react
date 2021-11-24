@@ -3,6 +3,6 @@ import {githubIcon} from './icons';
 
 export default function Footer() {
   return <footer>
-    <a href='github.com/doinby'>{githubIcon}</a>
+    <a href='https://www.github.com/doinby' target='_blank' rel='noreferrer noopener'>{githubIcon}</a>
   </footer>;
 }
