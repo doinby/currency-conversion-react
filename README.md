@@ -28,10 +28,10 @@ Users should be able to:
 
 ### Screenshot
 
-- Desktop:
+- Desktop: </br>
 ![Desktop](./public//images/screenshot-desktop.png)
 
-- Mobile:
+- Mobile: </br>
 ![Mobile](./public//images/screenshot-mobile.png)
 
 ### Links
